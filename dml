@@ -1,0 +1,348 @@
+                        5.SCHEDULE
+
+INSERT VALUES INTO THE TABLE SCHEDULE:
+=====================================
+
+COMMAND: INSERT INTO SCHEDULE VALUES(1001,'DELHI','BOMBAY',2230,0140,201,401,'23-JUN-23','24-JUN-23');
+
+1 row created.
+
+COMMAND: SELECT * FROM SCHEDULE;
+
+SCHEDULE_ID SOURCE               DESTINATION          S_TIME     D_TIME
+----------- -------------------- -------------------- ---------- ----------
+    EMP_ID  FLIGHT_ID DATE_DES  DATE_SOUR
+---------- ---------- --------- ---------
+       1001 DELHI                BOMBAY               2230       140
+       201        401 23-JUN-23 24-JUN-23
+
+
+==========================================================================================
+
+                        6.FOOD
+
+INSERT VALUES INTO THE TABLE FOOD:
+=================================
+
+COMMAND: INSERT INTO FOOD VALUES(301,'RRR','NOODLES','NV',5,201);
+
+1 row created.
+
+
+SQL> SELECT * FROM FOOD;
+
+   FOOD_ID DEALER_NAM FOOD_NAME  FO   NO_ITEMS     EMP_ID
+---------- ---------- ---------- -- ---------- ----------
+       301 RRR        NOODLES    NV          5        201
+
+==============================================================================================
+                                7.TICKET
+
+INSERT VALUES INTO THE TABLE TICKET:
+===================================
+
+COMMAND: INSERT INTO TICKET VALUES(501,5000,'04-MAR-23',NULL,4,701,NULL,401,900,101);
+
+1 row created.
+
+
+DISPLAY ALL THE DATA AVAILABLE IN TABLE TICKET:
+==============================================
+
+COMMAND: SELECT * FROM TICKET;
+
+ SELECT * FROM TICKET;
+
+ TICKET_ID AMOUNT          DATE_BOOK DATE_CANC NUM_SEATS  BOOK_ID    CANCEL_ID   FLIGHT_ID    BILL_ID     PSG_ID
+---------- --------------- --------- --------- ---------- ---------- ---------- ---------- ---------- ----------
+       501 5000            04-MAR-23           4          701                          501        700        101
+       502 2000            05-MAR-23           2          702                          502        800        102
+       503 8000            06-MAR-23           5          703                          501        500        103
+       504 10000           07-MAR-23           6          704                          502        601        104
+
+DISPLAY BILL ID FROM TABLE TICKET:
+=================================
+
+COMMAND: SELECT BILL_ID FROM TICKET;
+
+   BILL_ID
+----------
+       900
+       800
+       500
+       800
+
+DISPLAY BILL ID AND ITS CORESPONDING AMOUNT:
+============================================
+
+SQL> SELECT AMOUNT,BILL_ID FROM TICKET WHERE AMOUNT>2000;
+
+AMOUNT             BILL_ID
+--------------- ----------
+5000                   900
+8000                   500
+10000                  800
+
+DISPLAY TICKET ID , BILL ID, AMOUNT WHOSE AMOUNT IS GREATER THAN 8000:
+====================================================================
+
+COMMAND:SELECT TICKET_ID,AMOUNT,BILL_ID FROM TICKET WHERE AMOUNT>8000;
+
+ TICKET_ID AMOUNT             BILL_ID
+---------- --------------- ----------
+       504 10000                  601
+
+DISPLAY THE DETAILS WHOSE AMOUNT IS BETWEEN 5000 AND 8000:
+=========================================================
+
+COMMAND:SELECT * FROM TICKET WHERE AMOUNT BETWEEN 4000 AND 8000;
+
+ TICKET_ID AMOUNT          DATE_BOOK DATE_CANC NUM_SEATS  BOOK_ID    CANCEL_ID   FLIGHT_ID    BILL_ID     PSG_ID
+---------- --------------- --------- --------- ---------- ---------- ---------- ---------- ---------- ----------
+       501 5000            04-MAR-23           4          701                          501        700        101
+       503 8000            06-MAR-23           5          703                          501        500        103
+
+DISPLAY THE DETALS OF THE TICKET WHOSE DATE_BOOK IS NOT NULL:
+============================================================
+
+COMMAND:SELECT * FROM TICKET WHERE BOOK_ID IS NOT NULL;
+
+ TICKET_ID AMOUNT          DATE_BOOK DATE_CANC NUM_SEATS  BOOK_ID    CANCEL_ID   FLIGHT_ID    BILL_ID     PSG_ID
+---------- --------------- --------- --------- ---------- ---------- ---------- ---------- ---------- ----------
+       501 5000            04-MAR-23           4          701                          501        700        101
+       502 2000            05-MAR-23           2          702                          502        800        102
+       503 8000            06-MAR-23           5          703                          501        500        103
+       504 10000           07-MAR-23           6          704                          502        601        104
+
+
+UPDATE AMOUNT AS 13000 WHOSE BILL ID IS 800:
+============================================
+
+COMMAND: UPDATE TICKET SET AMOUNT=13000 WHERE BILL_ID=800;
+
+2 rows updated.
+
+SQL> SELECT AMOUNT,BILL_ID FROM TICKET;
+
+AMOUNT             BILL_ID
+--------------- ----------
+5000                   900
+13000                  800
+8000                   500
+13000                  800
+
+UPDATE THE AMOUNT AS DOUBLE IN TICKET:
+======================================
+
+COMMAND:UPDATE TICKET SET AMOUNT = AMOUNT * 2;
+
+4 rows updated.
+
+SQL> SELECT * FROM TICKET;
+
+ TICKET_ID AMOUNT          DATE_BOOK DATE_CANC NUM_SEATS  BOOK_ID    CANCEL_ID   FLIGHT_ID    BILL_ID     PSG_ID
+---------- --------------- --------- --------- ---------- ---------- ---------- ---------- ---------- ----------
+       501 10000           04-MAR-23           4          701                          501        700        101
+       502 4000            05-MAR-23           2          702                          502        800        102
+       503 16000           06-MAR-23           5          703                          501        500        103
+       504 20000           07-MAR-23           6          704                          502        601        104
+
+UPDATE BOOK ID AS 708 WHOSE TICKET ID IS 503:
+============================================
+
+COMMAND:UPDATE TICKET SET BOOK_ID = 708 WHERE TICKET_ID=503;
+
+1 row updated.
+
+SQL> SELECT * FROM TICKET;
+
+ TICKET_ID AMOUNT          DATE_BOOK DATE_CANC NUM_SEATS  BOOK_ID    CANCEL_ID   FLIGHT_ID    BILL_ID     PSG_ID
+---------- --------------- --------- --------- ---------- ---------- ---------- ---------- ---------- ----------
+       501 10000           04-MAR-23           4          701                          501        700        101
+       502 4000            05-MAR-23           2          702                          502        800        102
+       503 16000           06-MAR-23           5          708                          501        500        103
+       504 20000           07-MAR-23           6          704                          502        601        104
+
+
+UPDATE THE NUM SEATS AS 10 WHERE TICKET ID IS 704:
+=================================================
+
+COMMAND:UPDATE TICKET SET NUM_SEATS = 10 WHERE TICKET_ID=504;
+
+1 row updated.
+
+SQL> SELECT * FROM TICKET;
+
+ TICKET_ID AMOUNT          DATE_BOOK DATE_CANC NUM_SEATS  BOOK_ID    CANCEL_ID   FLIGHT_ID    BILL_ID     PSG_ID
+---------- --------------- --------- --------- ---------- ---------- ---------- ---------- ---------- ----------
+       501 10000           04-MAR-23           4          701                          501        700        101
+       502 4000            05-MAR-23           2          702                          502        800        102
+       503 16000           06-MAR-23           5          708                          501        500        103
+       504 20000           07-MAR-23           10         704                          502        601        104
+
+
+DELETE THE DETAILS FROM TABLE TICKET WHOSE BILL ID IS 500:
+=========================================================
+
+COMMAND: DELETE FROM TICKET WHERE BILL_ID=500;
+
+1 row deleted.
+
+SQL> SELECT AMOUNT,BILL_ID FROM TICKET;
+
+AMOUNT             BILL_ID
+--------------- ----------
+5000                   900
+13000                  800
+13000                  800
+
+DELETE ALL THE DATA FROM TICKET:
+================================
+
+COMMAND:DELETE FROM TICKET;
+
+4 rows deleted.
+
+SQL> SELECT * FROM TICKET;
+
+no rows selected
+
+
+=======================================================================================
+                        8.TICKET SEATS
+
+INSERT VALUES INTO THE TABLE TICKET_SEATS:
+=========================================
+
+COMMAND: INSERT INTO TICKET_SEATS VALUES(501,5);
+
+1 row created.
+
+DISPLAY ALL THE DEATILS FROM TICKET SEATS:
+=========================================
+
+SQL> SELECT * FROM TICKET_SEATS;
+
+ TICKET_ID      SEATS
+---------- ----------
+       501          5
+       502          2
+       504          6
+============================================================================================
+                        9.PASSENGER PHONE NUMBER
+
+INSERT VALUES INTO THE TABLE PASSENGER PHN NO:
+=============================================
+
+COMMAND: insert into passenger_phnno values(101,123456789);
+
+1 row created.
+
+SQL> select * from passenger_phnno;
+
+    PSG_ID    PSG_NUM
+---------- ----------
+       101  123456789
+
+UPDATE THE PHN NO AS 78787878 WHOSE ID IS 101:
+=============================================
+
+SQL> update passenger_phnno set psg_num=78787878 where psg_id=101;
+
+1 row updated.
+
+SQL> select * from passenger_phnno;
+
+    PSG_ID    PSG_NUM
+---------- ----------
+       101   78787878
+
+DELETE THE DETAILS WHOSE ID IS 101:
+==================================
+
+delete from passenger_phnno where psg_id=101;
+
+1 row deleted.
+
+SQL> select * from passenger_phnno;
+
+no rows selected
+
+==============================================================================================
+               10.FLIGHT SCHEDULE
+
+INSERT VALUES INTO THE TABLE FLIGHT SCHEDULE:
+==============================================
+
+insert into flight_schedule values(501,601);
+
+1 row created.
+
+SQL> select * from flight_schedule;
+
+ FLIGHT_ID SCHEDULE_ID
+---------- -----------
+       501         601
+===============================================================================================
+                        11. MANAGES
+
+INSERT VALUES INTO THE TABLE MANAGES:
+==============================================
+
+insert into manages values(201,501);
+
+1 row created.
+
+SQL> select * from manages;
+
+    EMP_ID  FLIGHT_ID
+---------- ----------
+       201        501
+
+===============================================================================================
+                        12. PROVIDES
+
+INSERT VALUES INTO THE TABLE MANAGES:
+=============================================
+
+ insert into manages values(201,501);
+
+1 row created.
+
+SQL> select * from manages;
+
+    EMP_ID  FLIGHT_ID
+---------- ----------
+       201        501
+
+===============================================================================================
+                        13.TRAVELS
+
+INSERT VALUES INTO THE TABLE TRAVELS:
+==============================================
+
+insert into travels values('14-sep-22',101,501);
+
+1 row created.
+
+SQL> select * from travels;
+
+TRA_DATE      PSG_ID  FLIGHT_ID
+--------- ---------- ----------
+14-SEP-22        101        501
+
+================================================================================================
+                        14.EMPLOYEE_MOBILE_NUMBER
+
+INSERT VALUES INTO THE TABLE EMPLOYEE MOBILE NO:
+=================================================
+insert into employee_mobile_no values(78787878,201);
+
+1 row created.
+
+SQL> select * from employee_mobile_no;
+
+EMP_MOBILE_NO     EMP_ID
+------------- ----------
+     78787878        201
+================================================================================================
